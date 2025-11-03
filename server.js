@@ -5,7 +5,7 @@ app.set('view engine','ejs');
 
 app.get('/', (req,res) =>{
     console.log('Here');
-    res.render('index');
+    res.render('index',{ip:req.ip,headers:req.headers['user-agent']});
 });
 
 app.listen(3030);
