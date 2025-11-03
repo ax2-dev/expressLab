@@ -1,7 +1,10 @@
 const express = require('express');
+const apiRouter = require('./routes/api');
+
 const app = express();
 
 app.set('view engine','ejs');
+app.use('/api',apiRouter);
 
 app.get('/', (req,res) =>{
     console.log('Here');
@@ -18,14 +21,6 @@ app.get('/signup', (req,res) =>{
 
 app.get('/login',(req,res) =>{
     res.send('Login page');
-});
-
-app.post('/api/signup',(req,res) =>{
-    res.send('Recieved sign up data');
-});
-
-app.post('/api/login',(req,res) =>{
-    res.send('Recieved login data');
 });
 
 app.listen(3030);
