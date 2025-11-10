@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require('fs');
+const csv = require('csv-parser');
 const apiRouter = require('./routes/api');
 
 const app = express();
@@ -21,6 +23,17 @@ app.get('/signup', (req,res) =>{
 
 app.get('/login',(req,res) =>{
     res.send('Login page');
+});
+
+app.get('/posts',(req,res) =>{
+    const posts = [];
+    fs.createReadStream('posts.csv')
+    .pipe(csv())
+    .on('data',(data) => {
+        posts.push(data);
+    }).on('end',() =>{
+        res.render('posts',{postArray:posts});
+    })
 });
 
 app.listen(3030);
