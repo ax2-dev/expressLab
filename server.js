@@ -2,11 +2,13 @@ const express = require('express');
 const fs = require('fs');
 const csv = require('csv-parser');
 const apiRouter = require('./routes/api');
+const usersRouter = require('./routes/users');
 
 const app = express();
 
 app.set('view engine','ejs');
 app.use('/api',apiRouter);
+app.use('/users',usersRouter);
 
 app.get('/', (req,res) =>{
     console.log('Here');
